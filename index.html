@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,32 @@
     <title>Прослушивание звука</title>
 </head>
 <body>
-    <audio controls>
-        <source src="https://raw.githubusercontent.com/marseillegizetdinov-lab/My-sound-project-for-NFC-tags/main/3_-_Zvuki_stonaZvuki_devushki_zvuki_krikovMEM_bassboost_reverb_76290123.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудиоэлемент.
-    </audio>
+    <!-- Скрытый аудиофайл -->
+    <audio id="mySound" src="https://raw.githubusercontent.com/marseillegizetdinov-lab/My-sound-project-for-NFC-tags/main/3_-_Zvuki_stonaZvuki_devushki_zvuki_krikovMEM_bassboost_reverb_76290123.mp3" preload="auto"></audio>
+
+
+    <!-- Изображение, по клику на которое будет проигрываться звук -->
+    <img
+        src="ВАША_RAW_ССЫЛКА_НА_ИЗОБРАЖЕНИЕ_bf48d3287c0f4c511122222cddc40c6e.jpg"
+        id="soundTrigger"
+        alt="Нажмите для воспроизведения звука"
+        style="cursor: pointer; border-radius: 10px; width: 300px;"
+    >
+
+    <script>
+        // Получаем элементы по их ID
+        const audioElement = document.getElementById('mySound');
+        const imageElement = document.getElementById('soundTrigger');
+
+        // Добавляем обработчик события клика к изображению
+        imageElement.addEventListener('click', function() {
+            // Сбрасываем воспроизведение к началу при каждом клике
+            audioElement.currentTime = 0;
+            // Запускаем воспроизведение
+            audioElement.play().catch(error => {
+                console.error('Ошибка воспроизведения:', error);
+            });
+        });
+    </script>
 </body>
 </html>
